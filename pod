@@ -40,20 +40,21 @@ Kubernetes objects (like Pods) can be created with a `.yaml` configuration file.
 | `metadata`   | Identifying data like `name`, `labels`, `namespace`                         |
 | `spec`       | Specification about containers, images, and their behavior                 |
 
----
 
-### 📄 Sample Pod YAML File
+apiVersion: API= Application Programming Interface. It tells which version of api to use when creating and managing object.
+The version of the api that is being used v1 or app/v1
+ 
+kind: The type of the object that is being created 
+      kind-> pod, service, deployment, replicaSets
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata: 
-  name: my-app
-  labels:
-    app: web
-    task: frontend
-    env: dev
-spec:
-  containers:
-    - name: my-container
-      image: nginx
+Metadata: Data the helps to uniquely identify the object. There are several option in this stage, like name, labels
+      name: Can only have a string value. Unique name for your object in the namespace.
+      labels: Can have any kind of key-value pairs
+      annotations: Extra info like comments.
+      namespace: logical separation on your cluster like folder.
+
+spec: The specification of the object.
+      containers: The list of the containers that will be launched in the pod.
+      -name: The name of the container.
+      image: The image that will be used to launch the container.
+
