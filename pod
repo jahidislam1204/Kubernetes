@@ -1,0 +1,59 @@
+# 🐳 Kubernetes Pods - A Complete Guide
+
+## 📦 What is a Pod?
+
+In Kubernetes, containers are **not deployed directly** to worker nodes. Instead, they are encapsulated in a **Kubernetes object** called a **Pod**.
+
+> A **Pod** is the smallest, most basic deployable object in Kubernetes.  
+> It represents a single instance of a running process in your cluster.
+
+### 🧩 Key Characteristics:
+- A Pod can have **one or more containers**.
+- Containers inside a Pod **share the same network namespace**.
+- They can **communicate with each other via `localhost`**.
+- All containers in a Pod share **storage volumes** and **IP address**.
+
+---
+
+## ⚙️ Pod Management Commands
+
+| Action                  | Command                                      |
+|-------------------------|----------------------------------------------|
+| 🚀 Create a Pod         | `kubectl run <pod-name> --image=<image>`     |
+| 📋 List all Pods        | `kubectl get pods`                           |
+| 🔎 List with details    | `kubectl get pods -o wide`                   |
+| 📖 Describe a Pod       | `kubectl describe pod <pod-name>`            |
+| ❌ Delete a Pod         | `kubectl delete pod <pod-name>`              |
+
+---
+
+## 🛠 Creating a Pod using YAML
+
+Kubernetes objects (like Pods) can be created with a `.yaml` configuration file.
+
+### 🔑 Required Fields in a Pod YAML:
+
+| Field        | Description                                                                 |
+|--------------|-----------------------------------------------------------------------------|
+| `apiVersion` | API version to use (`v1`, `apps/v1`, etc.)                                  |
+| `kind`       | Type of object being created (`Pod`, `Service`, etc.)                       |
+| `metadata`   | Identifying data like `name`, `labels`, `namespace`                         |
+| `spec`       | Specification about containers, images, and their behavior                 |
+
+---
+
+### 📄 Sample Pod YAML File
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: my-app
+  labels:
+    app: web
+    task: frontend
+    env: dev
+spec:
+  containers:
+    - name: my-container
+      image: nginx
